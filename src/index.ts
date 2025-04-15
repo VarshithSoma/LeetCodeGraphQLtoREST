@@ -59,6 +59,10 @@ async function startServer() {
       },
     },
   };
+  const fn = async (URL: string, ID: number): Promise<User> => {
+    const user = await axios.get<User>(`${URL}/${ID}`);
+    return user.data;
+  };
 
   const server = new ApolloServer({
     typeDefs,
