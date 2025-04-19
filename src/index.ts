@@ -1,11 +1,12 @@
-import { fetchUserProfile } from "./services/userServices";
+import { fetchUserProfile, fetchProblems } from "./services/userServices";
 
 const main = async () => {
   try {
-    const data = await fetchUserProfile("varshithsoma");
-    console.log(data);
+    //const data = await fetchUserProfile("varshithsoma");
+    const problems = await fetchProblems("all-code-essentials", 20, 0, {});
+    console.log(problems.problemsetQuestionList.questions);
   } catch (error) {
-    console.error("Failed to fetch user profile.");
+    console.error(error);
   }
 };
 

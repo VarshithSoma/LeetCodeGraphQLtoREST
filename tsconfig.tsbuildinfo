@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/api/leetcodeclient.ts","./src/graphql/getuserprofile.ts","./src/services/userservices.ts"],"version":"5.8.3"}
+{"root":["./src/index.ts","./src/api/leetcodeclient.ts","./src/graphql/getproblems.ts","./src/graphql/getuserprofile.ts","./src/services/userservices.ts"],"version":"5.8.3"}
