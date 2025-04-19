@@ -27,43 +27,25 @@ async function startServer() {
   app.use(bodyParser.json());
 
   const typeDefs = gql`
-    type User {
-      id: ID!
-      name: String!
-      username: String!
-      email: String!
-      phone: String!
-      website: String!
-    }
-
     type Todo {
       id: ID!
       title: String!
       completed: Boolean
     }
-
     type Query {
       getTodos: [Todo]
-      getAllUsers: [User]
-      getUser(id: ID!): User
     }
   `;
-
   const resolvers = {
     Query: {
-      getTodos: async (): Promise<Todo[]> => {
-        const res = await axios.get<Todo[]>(
+      getTodos: async () => {
+        const res = await axios.get(
           "https://jsonplaceholder.typicode.com/todos"
         );
         return res.data;
       },
     },
   };
-  const fn = async (URL: string, ID: number): Promise<User> => {
-    const user = await axios.get<User>(`${URL}/${ID}`);
-    return user.data;
-  };
-
   const server = new ApolloServer({
     typeDefs,
     resolvers,
