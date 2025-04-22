@@ -10,6 +10,7 @@
     "@types/express": "^5.0.1",
     "axios": "^1.8.4",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express4": "^0.0.1",
     "graphql": "^16.10.0",
