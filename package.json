@@ -17,12 +17,13 @@
     "graphql-tag": "^2.12.6"
   },
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
