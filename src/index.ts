@@ -3,7 +3,7 @@ import axios from "axios";
 import express from "express";
 import { Request, Response } from "express";
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "./config.env" });
 const PORT: number = Number(process.env.PORT);
 const app = express();
 app.get("/:username", async (req: Request, res: Response) => {
