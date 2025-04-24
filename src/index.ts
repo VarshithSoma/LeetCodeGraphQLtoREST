@@ -1,4 +1,5 @@
 import { fetchUserProfile, fetchProblems } from "./services/userServices";
+import axios from "axios";
 import express from "express";
 import { Request, Response } from "express";
 import dotenv from "dotenv";
