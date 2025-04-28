@@ -1,4 +1,8 @@
-import { fetchUserProfile, fetchProblems } from "./services/userServices";
+import {
+  fetchUserProfile,
+  fetchProblems,
+  fetchBadges,
+} from "./services/userServices";
 import axios from "axios";
 import express from "express";
 import { Request, Response } from "express";
@@ -21,6 +25,15 @@ app.get("/problems/:limit", async (req: Request, res: Response) => {
     const limit: number = Number(req.params["limit"]);
     const data = await fetchProblems("all-code-essentials", limit, 0, {});
     console.log(data + " " + limit);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.get("/:username/allBadges", async (req: Request, res: Response) => {
+  try {
+    const username: string = req.params["username"];
+    const data = await fetchBadges(username);
     res.send(data);
   } catch (error) {
     console.log(error);

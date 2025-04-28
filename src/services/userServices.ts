@@ -1,6 +1,7 @@
 import { leetcodeClient } from "../api/leetcodeClient";
 import { GET_USER_PROFILE_QUERY } from "../graphql/getUserProfile";
 import { GET_PROBLEMS_QUERY } from "../graphql/getProblems";
+import { GET_USER_BADGES_QUERY } from "../graphql/getBadges";
 export const fetchUserProfile = async (username: string) => {
   return await leetcodeClient(GET_USER_PROFILE_QUERY, { username });
 };
@@ -16,4 +17,7 @@ export const fetchProblems = async (
     limit,
     filters,
   });
+};
+export const fetchBadges = async (username: string) => {
+  return await leetcodeClient(GET_USER_BADGES_QUERY, { username });
 };
