@@ -3,6 +3,7 @@ import {
   fetchProblems,
   fetchBadges,
   fetchUserSubmissions,
+  fetchUserContestHistory,
 } from "./services/userServices";
 import axios from "axios";
 import express from "express";
@@ -31,7 +32,7 @@ app.get("/problems/:limit", async (req: Request, res: Response) => {
     console.log(error);
   }
 });
-app.get("/:username/acSubmissions", async (req: Request, res: Response) => {
+app.get("/:username/getBadges", async (req: Request, res: Response) => {
   try {
     const username: string = req.params["username"];
     const data = await fetchBadges(username);
@@ -54,6 +55,15 @@ app.get(
     }
   }
 );
+app.get("/:username/contestStats", async (req: Request, res: Response) => {
+  try {
+    const username: string = req.params["username"];
+    const data = await fetchUserContestHistory(username);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`);
 });
