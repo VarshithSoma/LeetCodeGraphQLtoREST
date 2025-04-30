@@ -2,6 +2,7 @@ import {
   fetchUserProfile,
   fetchProblems,
   fetchBadges,
+  fetchUserSubmissions,
 } from "./services/userServices";
 import axios from "axios";
 import express from "express";
@@ -30,7 +31,7 @@ app.get("/problems/:limit", async (req: Request, res: Response) => {
     console.log(error);
   }
 });
-app.get("/:username/allBadges", async (req: Request, res: Response) => {
+app.get("/:username/acSubmissions", async (req: Request, res: Response) => {
   try {
     const username: string = req.params["username"];
     const data = await fetchBadges(username);
@@ -39,6 +40,20 @@ app.get("/:username/allBadges", async (req: Request, res: Response) => {
     console.log(error);
   }
 });
+app.get(
+  "/userSubmissions/:username/:limit",
+  async (req: Request, res: Response) => {
+    try {
+      const username: string = req.params["username"];
+      const limit: number = Number(req.params["limit"]);
+      const data = await fetchUserSubmissions(username, limit);
+      console.log(limit + " " + username);
+      res.send(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`);
 });
