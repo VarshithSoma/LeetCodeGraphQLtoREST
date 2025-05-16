@@ -1,126 +1,18 @@
-import {
-  fetchUserProfile,
-  fetchProblems,
-  fetchBadges,
-  fetchUserSubmissions,
-  fetchUserContestHistory,
-  fetchAllUserContestData,
-  fetchUserACSubmissions,
-  fetchUserCalendar,
-} from "./services/userServices";
-import axios from "axios";
 import express from "express";
-import { Request, Response } from "express";
 import dotenv from "dotenv";
 import morgan from "morgan";
-import type { contest } from "./types/contest";
+import problemsRouter from "./routes/problemRoutes";
+import userRouter from "./routes/userRoutes";
 
 dotenv.config({ path: "./config.env" });
 const PORT: number = Number(process.env.PORT);
+
 const app = express();
 app.use(morgan("dev"));
-app.get("/problems/:limit", async (req: Request, res: Response) => {
-  try {
-    const limit: number = Number(req.params["limit"]);
-    const data = await fetchProblems("all-code-essentials", limit, 0, {});
-    console.log(data + " " + limit);
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
-app.get("/:username/getBadges", async (req: Request, res: Response) => {
-  try {
-    const username: string = req.params["username"];
-    const data = await fetchBadges(username);
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
-app.get(
-  "/:username/userSubmissions/:limit",
-  async (req: Request, res: Response) => {
-    try {
-      const username: string = req.params["username"];
-      const limit: number = Number(req.params["limit"]);
-      const data = await fetchUserSubmissions(username, limit);
-      console.log(limit + " " + username);
-      res.send(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
-app.get(
-  "/:username/acUserSubmissions/:limit",
-  async (req: Request, res: Response) => {
-    try {
-      const username: string = req.params["username"];
-      const limit: number = Number(req.params["limit"]);
-      const data = await fetchUserACSubmissions(username, limit);
-      res.send(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
-app.get(
-  "/:username/allAttendedContests",
-  async (req: Request, res: Response) => {
-    try {
-      const username: string = req.params["username"];
-      const data = await fetchAllUserContestData(username);
-      const attendedContests = data.userContestRankingHistory.filter(
-        (contest: contest) => contest.attended
-      );
-      res.send(attendedContests);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
 
-app.get("/:username/allContests", async (req: Request, res: Response) => {
-  try {
-    const username: string = req.params["username"];
-    const data = await fetchAllUserContestData(username);
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
-app.get("/:username/userCalendar", async (req: Request, res: Response) => {
-  try {
-    const username: string = req.params["username"];
-    const data = await fetchUserCalendar(username);
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
-app.get("/:username", async (req: Request, res: Response) => {
-  try {
-    const username: string = req.params["username"];
-    const data = await fetchUserProfile(username);
-    console.log(data + " " + username);
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-  }
-});
+app.use("/", problemsRouter);
+app.use("/", userRouter);
+
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`);
 });
-// const main = async () => {
-//   try {
-//     const data = await fetchUserProfile("");
-//     // const problems = await fetchProblems("all-code-essentials", 20, 0, {});
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// main();
-// const name: string = "varshith";
