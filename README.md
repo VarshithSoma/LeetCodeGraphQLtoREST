@@ -16,12 +16,12 @@ LeetCode primarily has a GraphQL API without official REST support or documentat
 ## Folder Structure
 
 src/
-┣ 📂api - Functions for making API calls to LeetCode
-┣ 📂graphql - GraphQL queries extracted via LeetCode's network tab
-┣ 📂routes - Route handlers for user and problem-related endpoints
-┣ 📂services - Controller logic linked to routes
-┣ 📂types - TypeScript type definitions
-┗ 📜index.ts - Application entry point
+├── api - Functions for making API calls to LeetCode
+├── graphql - GraphQL queries extracted via LeetCode's network tab
+├── routes - Route handlers for user and problem-related endpoints
+├── services - Controller logic linked to routes
+├── types - TypeScript type definitions
+└── index.ts - Application entry point
 
 ---
 
