@@ -2,7 +2,7 @@
   "name": "LeetCodeGraphQLtoREST",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/VarshithSoma/LeetCodeGraphQLtoREST.git",
+  "repository": "https://github.com/VarshithSoma/leetcode-graphql-to-rest.git",
   "author": "varshithkumarsoma <varshithkumarsoma@gmail.com>",
   "license": "MIT",
   "dependencies": {
