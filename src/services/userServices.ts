@@ -6,6 +6,7 @@ import { USER_SUBMISSIONS_QUERY } from "../graphql/getRecentSubmissions";
 import { GET_USER_CONTEST_STATS } from "../graphql/getContestStats";
 import { USER_CONTEST_DATA_QUERY } from "../graphql/getAllContestData";
 import { USER_AC_SUBMISSIONS_QUERY } from "../graphql/getRecentAcSubmissions";
+import { GET_USER_CALENDAR } from "../graphql/getUserProfileCalendar";
 export const fetchUserProfile = async (username: string) => {
   return await leetcodeClient(GET_USER_PROFILE_QUERY, { username });
 };
@@ -39,6 +40,9 @@ export const fetchUserACSubmissions = async (
     username,
     limit,
   });
+};
+export const fetchUserCalendar = async (username: string) => {
+  return await leetcodeClient(GET_USER_CALENDAR, { username });
 };
 export const fetchUserContestHistory = async (username: string) => {
   return await leetcodeClient(GET_USER_CONTEST_STATS, {

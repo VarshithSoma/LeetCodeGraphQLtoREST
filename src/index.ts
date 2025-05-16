@@ -6,16 +6,19 @@ import {
   fetchUserContestHistory,
   fetchAllUserContestData,
   fetchUserACSubmissions,
+  fetchUserCalendar,
 } from "./services/userServices";
 import axios from "axios";
 import express from "express";
 import { Request, Response } from "express";
 import dotenv from "dotenv";
+import morgan from "morgan";
 import type { contest } from "./types/contest";
 
 dotenv.config({ path: "./config.env" });
 const PORT: number = Number(process.env.PORT);
 const app = express();
+app.use(morgan("tiny"));
 app.get("/problems/:limit", async (req: Request, res: Response) => {
   try {
     const limit: number = Number(req.params["limit"]);
@@ -77,10 +80,20 @@ app.get(
     }
   }
 );
+
 app.get("/:username/allContests", async (req: Request, res: Response) => {
   try {
     const username: string = req.params["username"];
     const data = await fetchAllUserContestData(username);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.get("/:username/userCalendar", async (req: Request, res: Response) => {
+  try {
+    const username: string = req.params["username"];
+    const data = await fetchUserCalendar(username);
     res.send(data);
   } catch (error) {
     console.log(error);

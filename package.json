@@ -8,13 +8,16 @@
   "dependencies": {
     "@apollo/server": "^4.12.0",
     "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
     "axios": "^1.8.4",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express4": "^0.0.1",
     "graphql": "^16.10.0",
-    "graphql-tag": "^2.12.6"
+    "graphql-tag": "^2.12.6",
+    "morgan": "^1.10.0",
+    "save": "^2.9.0"
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
