@@ -4,6 +4,8 @@ import { GET_PROBLEMS_QUERY } from "../graphql/getProblems";
 import { GET_USER_BADGES_QUERY } from "../graphql/getBadges";
 import { USER_SUBMISSIONS_QUERY } from "../graphql/getRecentSubmissions";
 import { GET_USER_CONTEST_STATS } from "../graphql/getContestStats";
+import { USER_CONTEST_DATA_QUERY } from "../graphql/getAllContestData";
+import { USER_AC_SUBMISSIONS_QUERY } from "../graphql/getRecentAcSubmissions";
 export const fetchUserProfile = async (username: string) => {
   return await leetcodeClient(GET_USER_PROFILE_QUERY, { username });
 };
@@ -29,8 +31,20 @@ export const fetchUserSubmissions = async (username: string, limit: number) => {
     limit,
   });
 };
+export const fetchUserACSubmissions = async (
+  username: string,
+  limit: number
+) => {
+  return await leetcodeClient(USER_AC_SUBMISSIONS_QUERY, {
+    username,
+    limit,
+  });
+};
 export const fetchUserContestHistory = async (username: string) => {
   return await leetcodeClient(GET_USER_CONTEST_STATS, {
     username,
   });
+};
+export const fetchAllUserContestData = async (username: string) => {
+  return await leetcodeClient(USER_CONTEST_DATA_QUERY, { username });
 };
