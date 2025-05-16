@@ -18,7 +18,7 @@ import type { contest } from "./types/contest";
 dotenv.config({ path: "./config.env" });
 const PORT: number = Number(process.env.PORT);
 const app = express();
-app.use(morgan("tiny"));
+app.use(morgan("dev"));
 app.get("/problems/:limit", async (req: Request, res: Response) => {
   try {
     const limit: number = Number(req.params["limit"]);
