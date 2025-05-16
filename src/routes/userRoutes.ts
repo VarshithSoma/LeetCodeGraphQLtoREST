@@ -17,9 +17,10 @@ router.get("/:username/getBadges", async (req: Request, res: Response) => {
   try {
     const username: string = req.params["username"];
     const data = await fetchBadges(username);
-    res.send(data);
+    res.status(200).send(data);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal server Error" });
   }
 });
 router.get(
@@ -30,9 +31,10 @@ router.get(
       const limit: number = Number(req.params["limit"]);
       const data = await fetchUserSubmissions(username, limit);
       console.log(limit + " " + username);
-      res.send(data);
+      res.status(200).send(data);
     } catch (error) {
       console.log(error);
+      res.status(500).json({ message: "Internal server Error" });
     }
   }
 );
@@ -43,9 +45,10 @@ router.get(
       const username: string = req.params["username"];
       const limit: number = Number(req.params["limit"]);
       const data = await fetchUserACSubmissions(username, limit);
-      res.send(data);
+      res.status(200).send(data);
     } catch (error) {
       console.log(error);
+      res.status(500).json({ message: "Internal server Error" });
     }
   }
 );
@@ -58,9 +61,10 @@ router.get(
       const attendedContests = data.userContestRankingHistory.filter(
         (contest: contest) => contest.attended
       );
-      res.send(attendedContests);
+      res.status(200).send(attendedContests);
     } catch (error) {
       console.log(error);
+      res.status(500).json({ message: "Internal server Error" });
     }
   }
 );
@@ -69,18 +73,20 @@ router.get("/:username/allContests", async (req: Request, res: Response) => {
   try {
     const username: string = req.params["username"];
     const data = await fetchAllUserContestData(username);
-    res.send(data);
+    res.status(200).status(200).send(data);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal server Error" });
   }
 });
 router.get("/:username/userCalendar", async (req: Request, res: Response) => {
   try {
     const username: string = req.params["username"];
     const data = await fetchUserCalendar(username);
-    res.send(data);
+    res.status(200).status(200).send(data);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal server Error" });
   }
 });
 router.get("/:username", async (req: Request, res: Response) => {
@@ -88,9 +94,10 @@ router.get("/:username", async (req: Request, res: Response) => {
     const username: string = req.params["username"];
     const data = await fetchUserProfile(username);
     console.log(data + " " + username);
-    res.send(data);
+    res.status(200).status(200).send(data);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal server Error" });
   }
 });
 export default router;

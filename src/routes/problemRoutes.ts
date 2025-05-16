@@ -11,6 +11,7 @@ router.get("/problems/:limit", async (req: Request, res: Response) => {
     res.send(data);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal server Error" });
   }
 });
 export default router;
